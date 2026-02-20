@@ -367,7 +367,9 @@ export default function GlassyPortfolio() {
     };
 
     // use passive listener for better scroll performance
+   if (window.innerWidth < 768) return;
     window.addEventListener("mousemove", onMove, { passive: true });
+
 
     return () => {
       clearInterval(poolInterval);
@@ -404,75 +406,116 @@ export default function GlassyPortfolio() {
         </svg>
       </div>
 
-      <main className="max-w-5xl mx-auto px-6 py-24">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24">
+
         {/* Hero */}
         <motion.header
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mb-20"
-        >
-          <div className="relative rounded-2xl bg-white/5 border border-white/8 backdrop-blur-md p-10">
-            <div className="flex items-center justify-evenly gap-6 mb-8">
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  className="mb-14 sm:mb-16 md:mb-20"
+>
+  <div className="relative rounded-2xl bg-white/5 border border-white/8 backdrop-blur-md 
+  p-2 sm:p-4 md:p-6">
 
-              <div className="w-32 h-32 rounded-xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-white/8 to-white/3 border border-white/10 im-border">
-                <div className="text-5xl font-bold">IM</div>
-              </div>
+    {/* top section */}
+    <div className="
+      flex flex-col md:flex-row 
+      items-center md:items-start 
+      text-center md:text-left 
+      gap-6 md:gap-10
+    ">
 
-              <div className="">
-                <h1 className="text-4xl font-extrabold leading-tight">
-                  <span className="text-slate-300"></span>
-                  <span
-                    ref={nameRef}
-                    className="inline-block name-animated text-indigo-200 font-extrabold ml-1"
-                    data-direction="ltr"
-                    aria-label="Ibrahim Mogal"
-                  >
-                    {"Ibrahim Mogal".split("").map((ch, i) => (
-                      <span key={i} className="char inline-block origin-center">
-                        {ch}
-                      </span>
-                    ))}
-                  </span>
-                </h1>
-                <p className="mt-2 text-slate-300 max-w-lg">
-                  Enthusiastic Web Developer with strong knowledge in building
-                  responsive and user-friendly web interfaces using React.js,
-                  HTML, CSS, JavaScript, and Tailwind CSS. Familiar with
-                  integrating REST APIs and implementing reusable UI components.
-                  Basic understanding of backend technologies like Node.js,
-                  Express.js, and MongoDB.
-                </p>
-                <div className="flex mt-4 gap-3 justify-evenly">
-                  <a
-                    href="#projects"
-                    className="px-4 py-2 rounded-full bg-indigo-500/80 hover:bg-indigo-500 font-medium shadow-md"
-                  >
-                    View Projects
-                  </a>
-                  <a
-                    href="#contact"
-                    className="px-4 py-2 rounded-full bg-indigo-500/80 hover:bg-indigo-500 font-medium shadow-md"
-                  >
-                    Contact Me
-                  </a>
-                </div>
-              </div>
-            </div>
+      {/* Avatar */}
+      <div className="
+        w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32
+        shrink-0 rounded-xl overflow-hidden 
+        flex items-center justify-center
+        bg-gradient-to-br from-white/8 to-white/3 
+        border border-white/10 im-border
+      ">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold">IM</div>
+      </div>
 
-            {/* glassy info badges */}
-            <div className="mt-6 flex gap-3 flex-wrap justify-center">
-              <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
-                Open to internships and job opportunities
-              </div>
-              <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
-                Remote Friendly
-              </div>
-              <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
-                Based in Mumbai, India
-              </div>
-            </div>
-          </div>
-        </motion.header>
+      {/* Text content */}
+      <div className="max-w-xl">
+
+        {/* Name */}
+        <h1 className="
+          text-2xl sm:text-3xl md:text-4xl 
+          font-extrabold leading-tight
+        ">
+          <span
+            ref={nameRef}
+            className="inline-block name-animated text-indigo-200 font-extrabold"
+            data-direction="ltr"
+            aria-label="Ibrahim Mogal"
+          >
+            {"Ibrahim\u00A0Mogal".split("").map((ch, i) => (
+              <span key={i} className="char inline-block origin-center">
+                {ch}
+              </span>
+            ))}
+          </span>
+        </h1>
+
+        {/* Description */}
+        <p className="
+          mt-3 text-slate-300 
+          text-sm sm:text-base 
+          max-w-md md:max-w-lg
+        ">
+          Enthusiastic Web Developer with strong knowledge in building
+          responsive and user-friendly web interfaces using React.js,
+          HTML, CSS, JavaScript, and Tailwind CSS. Familiar with
+          integrating REST APIs and implementing reusable UI components.
+          Basic understanding of backend technologies like Node.js,
+          Express.js, and MongoDB.
+        </p>
+
+        {/* Buttons */}
+        <div className="
+          flex flex-col sm:flex-row
+          items-center md:items-start
+          gap-3 mt-5
+        ">
+          <a
+            href="#projects"
+            className="w-full text-center px-5 py-2.5 rounded-full bg-indigo-500/80 hover:bg-indigo-500 font-medium shadow-md"
+          >
+            View Projects
+          </a>
+
+          <a
+            href="#contact"
+            className="w-full text-center px-5 py-2.5 rounded-full bg-indigo-500/80 hover:bg-indigo-500 font-medium shadow-md"
+          >
+            Contact Me
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    {/* badges */}
+    <div className="
+      my-6 flex flex-wrap 
+      justify-center 
+      gap-2 sm:gap-3 text-xs sm:text-sm
+    ">
+      <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
+        Open to internships and job opportunities
+      </div>
+      <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
+        Remote Friendly
+      </div>
+      <div className="px-3 py-1 rounded-full bg-white/5 border border-white/6">
+        Based in Mumbai, India
+      </div>
+    </div>
+
+  </div>
+</motion.header>
+
 
         {/* Skills / TechStack */}
         <section id="skills" className="mb-16">
@@ -760,4 +803,6 @@ export default function GlassyPortfolio() {
       `}</style>
     </div>
   );
+
+
 }
